@@ -1,0 +1,15 @@
+
+env.py
+
+.DS_Store 
+.ipynb_checkpoints/ 
+__pycache__ 
+
+
+Thumbs.db
+
+*.json
+*.xlsx
+
+zillow.csv
+Zillow.jpg
