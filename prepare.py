@@ -38,6 +38,25 @@ def final_prep_zillow(df):
     # add dummy columns to df
     df = pd.concat([df, county_dummies], axis=1)
 
+    #change datatypes
+    df.bedroomcnt = df.bedroomcnt.astype(int)
+    df.calculatedfinishedsquarefeet = df.calculatedfinishedsquarefeet.astype(int)
+    df.fips = df.fips.astype(int)
+    df.latitude = df.latitude.astype(int)
+    df.longitude = df.longitude.astype(int)
+    df.lotsizesquarefeet = df.lotsizesquarefeet.astype(int)
+    df.regionidcity = df.regionidcity.astype(int)
+    df.regionidcounty = df.regionidcounty.astype(int)
+    df.regionidzip = df.regionidzip.astype(int)
+    df.yearbuilt = df.yearbuilt.astype(int)
+    df.structuretaxvaluedollarcnt = df.structuretaxvaluedollarcnt.astype(int)
+    df.taxvaluedollarcnt = df.taxvaluedollarcnt.astype(int)
+    df.landtaxvaluedollarcnt = df.landtaxvaluedollarcnt.astype(int)
+    df.taxamount = df.taxamount.astype(int)
+    #df['6037.0'] = df['6037.0'].astype(int)
+    #df['6059.0'] = df['6059.0'].astype(int)
+    #df['6111.0'] = df['6111.0'].astype(int)
+
     #change column names to be more legible
     df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code", "6037.0": "Los Angeles", "6059.0": "Orange ", "6037.0": "Ventura" })
 
