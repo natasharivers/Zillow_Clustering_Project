@@ -8,8 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 ############################## NULL VALUES  ##############################
 
-
-def handle_missing_values(df, prop_required_columns = 0.5, prop_required_row=0.75):
+def handle_missing_values(df, prop_required_columns = 0.75, prop_required_row=0.50):
     threshold = int(round(prop_required_columns * len(df.index), 0))
     df = df.dropna(axis=1, thresh=threshold)
     threshold = int(round(prop_required_row * len(df.columns), 0))
@@ -28,9 +27,14 @@ def final_prep_zillow(df):
     #replace blank spaces and special characters
     df = df.replace(r'^\s*$', np.nan, regex=True)
 
+    #drop using threshold
+    #df = handle_missing_values(df, prop_required_columns = 0.50, prop_required_row=0.75)
+
+    #impute finished square feet and lot using mean
+    df.calculatedfinishedsquarefeet=df.calculatedfinishedsquarefeet.fillna(df.calculatedfinishedsquarefeet.mean())
+    df.lotsizesquarefeet=df.lotsizesquarefeet.fillna(df.lotsizesquarefeet.mean())
+
     #drop null values
-    df = handle_missing_values(df, prop_required_columns = 0.5, prop_required_row=0.75)
-    #fill remaining values with impute
     df = df.dropna()
 
     #new column with county names for fips
