@@ -30,7 +30,7 @@ def final_prep_zillow(df):
 
     #drop null values
     df = handle_missing_values(df, prop_required_columns = 0.5, prop_required_row=0.75)
-    #drop remaining null values
+    #fill remaining values with impute
     df = df.dropna()
 
     #new column with county names for fips
