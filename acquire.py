@@ -47,10 +47,12 @@ def get_zillow():
         , taxvaluedollarcnt
         , landtaxvaluedollarcnt
         , taxamount
+        , transactiondate
     from properties_2017 prop
     inner join predictions_2017 pred on prop.parcelid = pred.parcelid
     where propertylandusetypeid = 261;
     '''
+
     return pd.read_sql(zc_query, get_connection('zillow'))
 
 ############################ Zillow CSV Function ##############################
