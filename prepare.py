@@ -33,10 +33,8 @@ def final_prep_zillow(df):
     #drop remaining null values
     df = df.dropna()
 
-    # create dummy columns for species
-    county_dummies = pd.get_dummies(df.fips)
-    # add dummy columns to df
-    df = pd.concat([df, county_dummies], axis=1)
+    #new column with county names for fips
+    df['county'] = df.fips.apply(lambda x: 'orange' if x == 6059.0 else 'los_angeles' if x == 6037.0 else 'ventura')
 
     #change datatypes
     df.bedroomcnt = df.bedroomcnt.astype(int)
@@ -53,9 +51,6 @@ def final_prep_zillow(df):
     df.taxvaluedollarcnt = df.taxvaluedollarcnt.astype(int)
     df.landtaxvaluedollarcnt = df.landtaxvaluedollarcnt.astype(int)
     df.taxamount = df.taxamount.astype(int)
-    #df['6037.0'] = df['6037.0'].astype(int)
-    #df['6059.0'] = df['6059.0'].astype(int)
-    #df['6111.0'] = df['6111.0'].astype(int)
 
     #change column names to be more legible
     df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code", "6037.0": "Los Angeles", "6059.0": "Orange ", "6037.0": "Ventura" })
