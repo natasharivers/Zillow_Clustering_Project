@@ -11,8 +11,9 @@ from sklearn.linear_model import LinearRegression, TweedieRegressor, LassoLars
 ############################## REMOVE OUTLIERS  ##############################
 
 def remove_outliers(df, k, col_list):
-    ''' remove outliers from a list of columns in a dataframe 
-        and return that dataframe
+    ''' 
+    remove outliers from a list of columns in a dataframe 
+    and return that dataframe
     '''
     
     for col in col_list:
@@ -30,7 +31,7 @@ def remove_outliers(df, k, col_list):
         
     return df
 
-############################## NULL VALUES  ##############################
+############################## NULL VALUES ##############################
 
 def handle_missing_values(df, prop_required_column = .5, prop_required_row = .5):
     ''' 
@@ -68,14 +69,14 @@ def impute(df, my_strategy, column_list):
 def final_prep_zillow(df):
     '''
     This function takes in the zillow df acquired by get_zillow_file,
-    then the function removed outliers from bedrooms, bathrooms, value_assessed, and total_sqft
+    then the function removed outliers from bedrooms, bathrooms and total_sqft
     Returns a cleaned zillow df.
     '''
 
     #replace blank spaces and special characters
     df = df.replace(r'^\s*$', np.nan, regex=True)
 
-    #filling null values
+    #handle null values
     #drop using threshold
     df = handle_missing_values(df, prop_required_column = .5, prop_required_row = .5)
     #impute continuous columns using mean
