@@ -42,7 +42,8 @@ def final_prep_zillow(df):
 
     #change datatypes
     df.bedroomcnt = df.bedroomcnt.astype(int)
-    df.calculatedfinishedsquarefeet = df.calculatedfinishedsquarefeet.astype(int)
+    df.calculatedfinishedsquarefeet 
+    df.calculatedfinishedsquarefeet.astype(int)
     df.fips = df.fips.astype(int)
     df.latitude = df.latitude.astype(int)
     df.longitude = df.longitude.astype(int)
@@ -57,7 +58,7 @@ def final_prep_zillow(df):
     df.taxamount = df.taxamount.astype(int)
 
     #change column names to be more legible
-    df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code", "6037.0": "Los Angeles", "6059.0": "Orange ", "6037.0": "Ventura" })
+    df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code"})
 
     #remove outliers for bedrooms
     q1_bed = df['bedrooms'].quantile(0.25)
