@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.cluster import KMeans
+
 
 ########################### NULLS BY COLUMN ###########################
 
@@ -89,7 +93,7 @@ def create_cluster(df, X, k):
     
     scaler = StandardScaler(copy=True).fit(X)
     X_scaled = pd.DataFrame(scaler.transform(X), columns=X.columns.values).set_index([X.index.values])
-    kmeans = KMeans(n_clusters = k, random_state = 42)
+    kmeans = KMeans(n_clusters = k, random_state = 123)
     kmeans.fit(X_scaled)
     kmeans.predict(X_scaled)
     df['cluster'] = kmeans.predict(X_scaled)
