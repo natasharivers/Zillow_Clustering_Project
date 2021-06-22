@@ -34,12 +34,12 @@ def nulls_by_row(df):
 def summarize(df):
     '''
     this function will take in a single argument (a pandas df) 
-    output to console various statistics on said dataframe, including:
+    output various statistics on that df, including:
     #.head()
     #.info()
     #.describe()
     #.value_counts()
-    #observation of nulls in the dataframe
+    #nulls 
     '''
     #print head
     print('=================================================')
@@ -72,7 +72,7 @@ def summarize(df):
     print('nulls in dataframe by column: ')
     print(nulls_by_col(df))
     
-    #print nulls by column
+    #print nulls by row
     print('=================================================')
     print('nulls in dataframe by row: ')
     print(nulls_by_row(df))
