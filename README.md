@@ -22,21 +22,32 @@ ________________________________________________________________________________
 
 ## Data Dictionary:
 
-| Target          |       Datatype          |    Definition                      |
-|-----------------|-------------------------|:----------------------------------:|
-| logerror        | 28391 non-null: float64 | assessed value of homes in dataset | 
+| Target          |       Datatype          |    Definition                                       |
+|-----------------|-------------------------|:---------------------------------------------------:|
+| logerror        | 48236 non-null: float64 | difference between actual value and predicted value | 
 
 
-| Feature                 |       Datatype         |    Definition               |
-|-------------------------|------------------------|:---------------------------:|
-|total_sqft               |28321 non-null: float64 |total calculated square feet |
-|bedrooms                 |28392 non-null: float64 |number of bedrooms           |
-|bathrooms                |28392 non-null: float64 |number of bathrooms          |
-|tax_amount               |28391 non-null: float64 |tax amount                   |
-|year_built               |28298 non-null: float64 |year the property was built  |
-|county_code              |28392 non-null: float64 |county code                  |
-|parcelid                 |28392 non-null: int64   |unique property id           |
-|tax_rate                 |28390 non-null: float64 |created column for taxrate   |
+| Feature                    |       Datatype         |    Definition                       |
+|----------------------------|------------------------|:-----------------------------------:|
+|parcelid                    |48236 non-null: int64   |unique property id                   |
+|bedrooms                    |48236 non-null: int64   |number of bedrooms                   |
+|bathrooms                   |48236 non-null: float64 |number of bathrooms                  |
+|total_sqft                  |48236 non-null: int64   |total calculated square feet         |
+|county_code                 |48236 non-null: int64   |county code                          |
+|latidude                    |48236 non-null: int64   |latitude of home location            |
+|longitude                   |48236 non-null: int64   |longitude of home location           |
+|lotsizesquarefeet           |48236 non-null: int64   |total calculated square feet         |
+|regionidcity                |48236 non-null: int64   |city code of property                |
+|regionidcounty              |48236 non-null: int64   |code code of property                |
+|regionidzip                 |48236 non-null: int64   |zip code of property                 |
+|year_built                  |48236 non-null: int64   |year the property was built          |
+|structuretaxvaluedollarcnt  |48236 non-null: int64   |value of structure                   |
+|value_assessed              |48236 non-null: int64   |value of entire property             |
+|landtaxvaluedollarcnt       |48236 non-null: int64   |value of land on which property sits |
+|tax_amount                  |48236 non-null: int64   |tax amount                           |
+|transactiondate             |48236 non-null: object  |date property was purchased          |
+|county                      |48236 non-null: object  |engineered column- county name       |
+
 
 ___________________________________________________________________________________
 ___________________________________________________________________________________
@@ -44,8 +55,21 @@ ________________________________________________________________________________
 ## Questions & Hypothesis:
 
 ### Key Questions:
+- Is there a correlation between logerror and total square feet
+- Is there a correlation between logerror and longitude of property
+- Is there a relationship between logerror and bedroom count
 
+### Hypothesis 1: Correlation Test (Sqft vs Logerror)
+- $H_0$: There is no correlation between logerror and total square feet of the property
+- $H_a$: There is a correlation between logerror and total square feet of the property
 
+### Hypothesis 2: Correlation Test (Longitude vs Logerror)
+- $H_0$: There is no correlation between logerror and longitude
+- $H_a$: There is a correlation between logerror and longitude
+
+### Hypothesis 3: T-Test (Bedrooms vs Logerror)
+- $H_0$: There is no relationship between logerror and bedroom count
+- $H_a$: There is a relationship between logerror and bedroom count
 ___________________________________________________________________________________
 ___________________________________________________________________________________
 
@@ -120,7 +144,7 @@ ________________________________________________________________________________
 
 ### --> Deliver
 
-- 5 minute presentation of Final Notebook
+- Presentation of Final Notebook
     - Audience: Zillow Data Science Team (use technical language)
 
 - Github repository holding:
