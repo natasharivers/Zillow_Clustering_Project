@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+import itertools
 
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
@@ -112,3 +113,12 @@ def create_scatter_plot(x,y,df,kmeans, X_scaled, scaler):
     sns.scatterplot(x = x, y = y, data = df, hue = 'cluster')
     centroids = pd.DataFrame(scaler.inverse_transform(kmeans.cluster_centers_), columns=X_scaled.columns)
     centroids.plot.scatter(y=y, x= x, ax=plt.gca(), alpha=.30, s=500, c='black')
+
+############################## PLOT VARIABLES ##############################
+
+def plot_variable_pairs(df, cont_vars = 2):
+    combos = itertools.combinations(df,cont_vars)
+    for i in combos:
+        plt.figure(figsize=(8,3))
+        sns.regplot(data=df, x=i[0], y =i[1],line_kws={"color":"black"})
+        plt.show()
