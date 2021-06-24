@@ -82,7 +82,7 @@ def final_prep_zillow(df):
     #impute continuous columns using mean
     df = impute(df, 'mean', ['calculatedfinishedsquarefeet', 'lotsizesquarefeet', 'structuretaxvaluedollarcnt', 'taxvaluedollarcnt', 'landtaxvaluedollarcnt', 'taxamount'])
     # imputing descrete columns with most frequent value
-    df = impute(df, 'most_frequent', ['bathroomcnt', 'bedroomcnt', 'regionidcity', 'regionidcounty', 'regionidzip', 'yearbuilt', 'fips', 'latitude', 'longitude'])
+    df = impute(df, 'most_frequent', ['bathroomcnt', 'bedroomcnt', 'regionidzip', 'yearbuilt', 'fips', 'latitude', 'longitude'])
 
     #drop duplicate parcelid keeping the latest one by transaction date
     df = df.sort_values('transactiondate').drop_duplicates('parcelid',keep='last')
@@ -100,14 +100,15 @@ def final_prep_zillow(df):
     df.latitude = df.latitude.astype(int)
     df.longitude = df.longitude.astype(int)
     df.lotsizesquarefeet = df.lotsizesquarefeet.astype(int)
-    df.regionidcity = df.regionidcity.astype(int)
-    df.regionidcounty = df.regionidcounty.astype(int)
     df.regionidzip = df.regionidzip.astype(int)
     df.yearbuilt = df.yearbuilt.astype(int)
     df.structuretaxvaluedollarcnt = df.structuretaxvaluedollarcnt.astype(int)
     df.taxvaluedollarcnt = df.taxvaluedollarcnt.astype(int)
     df.landtaxvaluedollarcnt = df.landtaxvaluedollarcnt.astype(int)
     df.taxamount = df.taxamount.astype(int)
+
+    #remove dashes and change dtype for transaction date
+    df.transactiondate = df.transactiondate.str.replace('-','').astype(int)
 
     #change column names to be more legible
     df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code"})
