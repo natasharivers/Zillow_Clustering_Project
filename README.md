@@ -24,29 +24,40 @@ ________________________________________________________________________________
 
 | Target          |       Datatype          |    Definition                                       |
 |-----------------|-------------------------|:---------------------------------------------------:|
-| logerror        | 48236 non-null: float64 | difference between actual value and predicted value | 
+| logerror        | 48646 non-null: float64 | difference between actual value and predicted value | 
 
 
 | Feature                    |       Datatype         |    Definition                       |
 |----------------------------|------------------------|:-----------------------------------:|
-|parcelid                    |48236 non-null: int64   |unique property id                   |
-|bedrooms                    |48236 non-null: int64   |number of bedrooms                   |
-|bathrooms                   |48236 non-null: float64 |number of bathrooms                  |
-|total_sqft                  |48236 non-null: int64   |total calculated square feet         |
-|county_code                 |48236 non-null: int64   |county code                          |
-|latidude                    |48236 non-null: int64   |latitude of home location            |
-|longitude                   |48236 non-null: int64   |longitude of home location           |
-|lotsizesquarefeet           |48236 non-null: int64   |total calculated square feet         |
-|regionidcity                |48236 non-null: int64   |city code of property                |
-|regionidcounty              |48236 non-null: int64   |code code of property                |
-|regionidzip                 |48236 non-null: int64   |zip code of property                 |
-|year_built                  |48236 non-null: int64   |year the property was built          |
-|structuretaxvaluedollarcnt  |48236 non-null: int64   |value of structure                   |
-|value_assessed              |48236 non-null: int64   |value of entire property             |
-|landtaxvaluedollarcnt       |48236 non-null: int64   |value of land on which property sits |
-|tax_amount                  |48236 non-null: int64   |tax amount                           |
-|transactiondate             |48236 non-null: object  |date property was purchased          |
-|county                      |48236 non-null: object  |engineered column- county name       |
+|parcelid                    |48646 non-null: int64   |unique property id                   |
+|bedrooms                    |48646 non-null: int64   |number of bedrooms                   |
+|bathrooms                   |48646 non-null: float64 |number of bathrooms                  |
+|total_sqft                  |48646 non-null: int64   |total calculated square feet         |
+|county_code                 |48646 non-null: int64   |county code                          |
+|latidude                    |48646 non-null: int64   |latitude of home location            |
+|longitude                   |48646 non-null: int64   |longitude of home location           |
+|lotsizesquarefeet           |48646 non-null: int64   |total calculated square feet         |
+|regionidzip                 |48646 non-null: int64   |zip code of property                 |
+|year_built                  |48646 non-null: int64   |year the property was built          |
+|structuretaxvaluedollarcnt  |48646 non-null: int64   |value of structure                   |
+|value_assessed              |48646 non-null: int64   |value of entire property             |
+|landtaxvaluedollarcnt       |48646 non-null: int64   |value of land on which property sits |
+|tax_amount                  |48646 non-null: int64   |tax amount                           |
+|transactiondate             |48646 non-null: object  |date property was purchased          |
+|county                      |48646 non-null: object  |engineered column- county name       |
+|property_age                |48646 non-null: object  |engineered column- age of property   |
+
+
+
+| propertyusetypeid   |    Definition                            |
+|---------------------|:----------------------------------------:|
+|261                  |Single Family Residential                 |
+|263                  |Mobile Home                               |
+|264                  |Townhouse                                 |
+|265                  |Cluster Home                              |
+|273                  |Bungalow                                  |
+|275                  |Manufactured, Modular, Prefabricated Home |       
+|279                  |Inferred Single Family Residential        |
 
 
 ___________________________________________________________________________________
@@ -60,16 +71,20 @@ ________________________________________________________________________________
 - Is there a relationship between logerror and bedroom count
 
 ### Hypothesis 1: Correlation Test (Sqft vs Logerror)
-- $H_0$: There is no correlation between logerror and total square feet of the property
-- $H_a$: There is a correlation between logerror and total square feet of the property
+- Null Hypothesis: There is no correlation between logerror and total square feet of the property
+- Alterate Hypothesis: There is a correlation between logerror and total square feet of the property
 
-### Hypothesis 2: Correlation Test (Longitude vs Logerror)
-- $H_0$: There is no correlation between logerror and longitude
-- $H_a$: There is a correlation between logerror and longitude
+### Hypothesis 2: Correlation Test (Age of Property vs Logerror)
+- Null Hypothesis: There is no correlation between logerror and property_age
+- Alterate Hypothesis: There is a correlation between logerror and property_age
 
-### Hypothesis 3: T-Test (Bedrooms vs Logerror)
-- $H_0$: There is no relationship between logerror and bedroom count
-- $H_a$: There is a relationship between logerror and bedroom count
+### Hypothesis 3: Correlation Test (Longitude vs Logerror)
+- Null Hypothesis: There is no correlation between logerror and longitude
+- Alterate Hypothesis: There is a correlation between logerror and longitude
+
+### Hypothesis 4: T-Test (Bedrooms vs Logerror)
+- Null Hypothesis: There is no relationship between logerror and bedroom count
+- Alterate Hypothesis: There is a relationship between logerror and bedroom count
 ___________________________________________________________________________________
 ___________________________________________________________________________________
 
@@ -78,7 +93,9 @@ ________________________________________________________________________________
 
 ### My findings are:
 
-
+- All null hypothesis have been rejected
+- XXX model performed best
+- Clusters have been found between XXX and XXX
 
 ___________________________________________________________________________________
 ___________________________________________________________________________________
