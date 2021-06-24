@@ -30,7 +30,7 @@ def get_zillow():
     '''
     
     zc_query = '''
-    select prop.parcelid
+    SELECT prop.parcelid
         , pred.logerror
         , bathroomcnt
         , bedroomcnt
@@ -39,8 +39,6 @@ def get_zillow():
         , latitude
         , longitude
         , lotsizesquarefeet
-        , regionidcity
-        , regionidcounty
         , regionidzip
         , yearbuilt
         , structuretaxvaluedollarcnt
@@ -48,9 +46,9 @@ def get_zillow():
         , landtaxvaluedollarcnt
         , taxamount
         , transactiondate
-    from properties_2017 prop
-    inner join predictions_2017 pred on prop.parcelid = pred.parcelid
-    where propertylandusetypeid = 261;
+    FROM properties_2017 prop
+    INNER JOIN predictions_2017 pred ON prop.parcelid = pred.parcelid
+    WHERE propertylandusetypeid IN (261, 263, 264, 265, 273, 275, 279);
     '''
 
     return pd.read_sql(zc_query, get_connection('zillow'))
