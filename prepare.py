@@ -112,6 +112,9 @@ def final_prep_zillow(df):
     #change column names to be more legible
     df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code"})
 
+    #create new column for age of property
+    df['property_age'] = 2017- df.year_built 
+
     return df
 
 ############################## ZILLOW SPLIT ##############################
