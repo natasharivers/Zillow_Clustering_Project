@@ -44,39 +44,49 @@ def summarize(df):
     #.info()
     #.describe()
     #.value_counts()
-    #nulls 
     '''
     #print head
-    print('=================================================')
+    print('==================================================================================================')
     print('Dataframe head: ')
     print(df.head(3))
     
     #print info
-    print('=================================================')
+    print('==================================================================================================')
     print('Dataframe info: ')
     print(df.info())
     
     #print descriptive stats
-    print('=================================================')
+    print('==================================================================================================')
     print('DataFrame Description')
     print(df.describe())
     num_cols = df.select_dtypes(exclude='O').columns.to_list()
     cat_cols = df.select_dtypes(include='O').columns.to_list()
     
     #print value counts
-    print('=================================================')
+    print('==================================================================================================')
     print('Dataframe value counts: ')
     for col in df. columns:
         if col in cat_cols:
             print(df[col].value_counts())
         else:
             print(df[col].value_counts(bins=10, sort = False))
+
+
+ ############################ PRINT NULLS ############################
+def nulls_output(df):
+
+    #print nulls by row
+    print('=================================================')
+    print('nulls in dataframe by row: ')
+    print(df.isnull().sum())
+    print('=================================================')
     
     #print nulls by column
     print('=================================================')
     print('nulls in dataframe by column: ')
     print(nulls_by_col(df))
-    
+    print('=================================================')
+
     #print nulls by row
     print('=================================================')
     print('nulls in dataframe by row: ')
