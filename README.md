@@ -67,6 +67,7 @@ ________________________________________________________________________________
 
 ### Key Questions:
 - Is there a correlation between logerror and total square feet
+- Is there a correlation between logerror and the age of the property(in years) 
 - Is there a correlation between logerror and longitude of property
 - Is there a relationship between logerror and bedroom count
 
@@ -94,8 +95,21 @@ ________________________________________________________________________________
 ### My findings are:
 
 - All null hypothesis have been rejected
-- XXX model performed best
-- Clusters have been found between XXX and XXX
+
+<br>
+
+- 2nd degree Polynomial regression model performed best
+
+| Model                            | rmse_train  | rmse_validate |
+|----------------------------------|:-----------:|---------------|
+|mean_baseline                     | 0.16529     | 0.17102       |
+|OLS                               | 0.16514     | 0.17103       |
+|LassoLars (alpha 2)               | 0.16529     | 0.17102       |
+|Polynomial Regression (degree=2)  | 0.16501     | 0.17096       |
+
+<br>
+
+- Clusters have been found between age of property and total sqft of the property
 
 ___________________________________________________________________________________
 ___________________________________________________________________________________
