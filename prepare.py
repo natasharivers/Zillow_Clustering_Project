@@ -8,6 +8,21 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.feature_selection import RFE, SelectKBest, f_regression
 from sklearn.linear_model import LinearRegression, TweedieRegressor, LassoLars
 
+############################## IDENTIFIES OUTLIERS FUNCTION ##############################
+
+def outlier_bound_calculation(df, variable):
+    '''
+    calcualtes the lower and upper bound to locate outliers in variables
+    '''
+    quartile1, quartile3 = np.percentile(df[variable], [25,75])
+    IQR_value = quartile3 - quartile1
+    lower_bound = quartile1 - (1.5 * IQR_value)
+    upper_bound = quartile3 + (1.5 * IQR_value)
+    '''
+    returns the lowerbound and upperbound values
+    '''
+    return print(f'For {variable} the lower bound is {lower_bound} and  upper bound is {upper_bound}')
+
 ############################## REMOVE OUTLIERS  ##############################
 
 def remove_outliers(df, k, col_list):
@@ -113,7 +128,7 @@ def final_prep_zillow(df):
     #change column names to be more legible
     df = df.rename(columns={"calculatedfinishedsquarefeet": "total_sqft", "bedroomcnt": "bedrooms", "bathroomcnt": "bathrooms", "taxvaluedollarcnt": "value_assessed", "taxamount": "tax_amount", "yearbuilt": "year_built", "fips": "county_code"})
 
-    #create new column for age of property
+    #create new column for age of property- returns age of property in years
     df['property_age'] = 2017- df.year_built 
 
     return df
