@@ -138,7 +138,7 @@ def final_prep_zillow(df):
 def zillow_split(df, target):
     '''
     This function take in get_zillow  from aquire.py and performs a train, validate, test split
-    Returns train, validate, test, X_train, y_train, X_validate, y_validate, X_test, y_test
+    Returns train, validate, test, X_train, y_train, X_validate, y_validate, X_test, y_test as partitions
     and prints out the shape of train, validate, test
     '''
     #create train_validate and test datasets
@@ -155,13 +155,9 @@ def zillow_split(df, target):
 
     X_test = test.drop(columns=[target])
     y_test = test[target]
-
-    # Have function print datasets shape
-    print(f'train -> {train.shape}')
-    print(f'validate -> {validate.shape}')
-    print(f'test -> {test.shape}')
    
-    return train, validate, test, X_train, y_train, X_validate, y_validate, X_test, y_test
+    return X_train, X_validate, X_test, y_train, y_validate, y_test
+
 
 ############################## MIN MAX SCALER ##############################
 
@@ -217,3 +213,42 @@ def select_kbest(X,y,k):
     k_features = X.columns[f_selector.get_support()]
 
     return k_features
+
+############################## Simple Split Function ##############################
+
+def simple_split(df):
+    '''
+    This function take in get_zillow  from aquire.py and performs a train, validate, test split
+    Returns train, validate, test and prints out the shape of train, validate, test
+    '''
+    #create train_validate and test datasets
+    train, test = train_test_split(df, train_size = 0.8, random_state = 123)
+    #create train and validate datasets
+    train, validate = train_test_split(train, train_size = 0.7, random_state = 123)
+
+    # Have function print datasets shape
+    print(f'train -> {train.shape}')
+    print(f'validate -> {validate.shape}')
+    print(f'test -> {test.shape}')
+   
+    return train, validate, test
+
+######################################## Simple Scaler ########################################
+def simple_mm_scale(df, X_train):
+    '''
+    This function uses minmax_scale(df, X_train)
+    Takes in the dataframe and applies a minmax scaler to it. 
+    Outputs a scaled dataframe.  
+    '''
+    scaler = MinMaxScaler().fit(X_train)
+    x_scaled = scaler.transform(data_set)
+    x_scaled = pd.DataFrame(x_scaled)
+    x_scaled.columns = data_set.columns
+    return x_scaled
+
+    scaler = MinMaxScaler(copy=True).fit(X_train[numeric_cols])
+
+    # scale X_train, X_validate, X_test using MinMax Scaler from X_train.
+    X_train_scaled_array = scaler.transform(X_train[numeric_cols])
+    X_validate_scaled_array = scaler.transform(X_validate[numeric_cols])
+    X_test_scaled_array = scaler.transform(X_test[numeric_cols])
