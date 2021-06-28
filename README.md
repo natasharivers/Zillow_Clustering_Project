@@ -94,7 +94,8 @@ ________________________________________________________________________________
 
 ### My findings are:
 
-- All null hypothesis have been rejected
+- We have failed to reject all four Null Hypothesis
+- Therefore, there is a relationship between these features and logerror
 
 <br>
 
@@ -106,11 +107,15 @@ ________________________________________________________________________________
 |OLS                               | 0.16520     | 0.17103       |
 |LassoLars (alpha 2)               | 0.16529     | 0.17102       |
 |Polynomial Regression (degree=2)  | 0.16512     | 0.17101       |
+|OLS (Unscaled Data)               | 0.16520     | 0.17103
 
 <br>
 
-- Clusters have been found between age of property and total sqft of the property
-
+- Clusters have been found between:
+    - age of property and number of bedrooms
+    - age of property and total square feet of the property
+    - longitude and total square feet of the property
+    
 ___________________________________________________________________________________
 ___________________________________________________________________________________
 
@@ -196,11 +201,3 @@ You will need your own env file with database credentials along with all the nec
 - Add your own env file to your directory. (user, password, host)
 - Run the final_report.ipynb notebook
 
-
-
-
-** Docstrings in functions!!!
-*** Document judgement calls 
-- use clusters for exploration
-- encode clusters are driver (if you want)
-- create a model based on clusters (if you want)
