@@ -14,6 +14,10 @@ from sklearn.cluster import KMeans
 
 #get nulls by column
 def nulls_by_col(df):
+    '''
+    This function takes in dataframe
+    outputs a dataframe that shows the number of missing colums
+    '''
     num_missing = df.isnull().sum()
     rows = df.shape[0]
     prcnt_miss = num_missing / rows * 100
@@ -24,6 +28,10 @@ def nulls_by_col(df):
 
 #get nulls by row
 def nulls_by_row(df):
+    '''
+    This function takes in dataframe
+    outputs a dataframe that shows the number of missing rows
+    '''
     num_missing = df.isnull().sum(axis=1)
     prcnt_miss = num_missing / df.shape[1] * 100
     rows_missing = pd.DataFrame({'num_cols_missing': num_missing, 'pct_cols_missing': prcnt_miss})\
@@ -74,10 +82,13 @@ def summarize(df):
 
  ############################ PRINT NULLS ############################
 def nulls_output(df):
-
-    #print nulls by row
+    '''
+    This function takes in dataframe
+    outputs all nulls by column, row and total 
+    '''
+    #print nulls 
     print('=================================================')
-    print('nulls in dataframe by row: ')
+    print('nulls in dataframe: ')
     print(df.isnull().sum())
     print('=================================================')
     
@@ -129,6 +140,10 @@ def create_scatter_plot(x,y,df,kmeans, X_scaled, scaler):
 ############################## PLOT VARIABLES ##############################
 
 def plot_variable_pairs(df, cont_vars = 2):
+    '''
+    This function takes in dataframe and number of continious variables
+    outputs plots of those pairs
+    '''
     combos = itertools.combinations(df,cont_vars)
     for i in combos:
         plt.figure(figsize=(8,3))
