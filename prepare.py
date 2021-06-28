@@ -196,6 +196,10 @@ def min_max_scaler(X_train, X_validate, X_test, numeric_cols):
 
 ############################## RFE Function ##############################
 def rfe(X, y, n):
+    '''
+    This function takes an X, Y and n (number of features)
+    and outputs the regressive feature engineering to show most valuable features
+    '''
     lm = LinearRegression()
     rfe = RFE(lm, n)
     rfe.fit(X, y)
@@ -208,6 +212,10 @@ def rfe(X, y, n):
 
 
 def select_kbest(X,y,k): 
+    '''
+    This function takes an X, Y and n (number of features)
+    and outputs the most valuable features by using SelectKBest
+    '''
     f_selector = SelectKBest(f_regression, k)
     f_selector.fit(X, y)
     k_features = X.columns[f_selector.get_support()]
